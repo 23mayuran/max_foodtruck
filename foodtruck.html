@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <title>Tinder for Food Trucks</title>
+
+</head>
+
+<body>
+    <!-- 
+    testing code -->
+
+    <div class="jumbotron">
+        <div id="jumbotronDiv">
+            <h1 id="jumbotronHeading">Show where your food truck is located</h1>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="container" id="containment">
+
+        <div class="nav-wrapper2">
+
+            <h1 id="checkInWrapper">Check in here</h1>
+            <form>
+                <div class="input-field">
+                    <form id="checkInLocation">
+                        <div class="container">
+                            <input id="searchTruckName" placeholder="FoodTruck Name" type="search" required>
+                            <input id="emailName" placeholder="Email" type="search" required>
+                        </div>
+                        <ul>
+                            <!-- Modal Trigger -->
+                            <!-- <a class="waves-effect waves-light checkInLocationButton modal-trigger" href="#modal1">Check-In</a> -->
+                            <button data-target="modal1" class="checkInLocationButton modal-trigger">Check-In</button>
+                            <!-- Modal Structure -->
+                            <div id="modal1" class="modal">
+                                <div class="modal-content">
+                                    <h4>You have been Checked-In </h4>
+                                    <p>See the map for food trucks near you</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="index.html" id="modalButton"
+                                        class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <!-- Modal Trigger -->
+                            <a class="waves-effect waves-light checkOutLocationButton modal-trigger"
+                                href="#modal2">Check-Out</a>
+                            <!-- <button data-target="modal1" class="checkOutLocationButton modal-trigger">Check-Out</button> -->
+                            <!-- Modal Structure -->
+                            <div id="modal2" class="modal">
+                                <div class="modal-content">
+                                    <h4>Check-Out</h4>
+                                    <p>Thank you for using Food Truck Tinder</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                                </div>
+                            </div>
+
+                        </ul>
+                    </form>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('.modal').modal();
+        });
+
+        let pos = {}
+        navigator.geolocation.getCurrentPosition(function (position) {
+            pos = {
+                inputLat: position.coords.latitude,
+                inputLong: position.coords.longitude
+            }
+        })
+        console.log(pos)
+
+        function writeUserData(inputTruckName, inputEmail, inputPos) {
+
+            //console.log(pos)
+
+            let userID = $("#searchTruckName").val();
+            firebase.database().ref('users/' + userID).set({
+                truckName: inputTruckName,
+                email: inputEmail,
+                location: inputPos
+            });
+        }
+
+
+        function clearform() {
+
+            $("#searchTruckName").value = '';
+            $("#emailName").value = '';
+
+        }
+
+
+        let button = document.querySelector("checkInLocation");
+
+        $(".checkInLocationButton").on("click", function () {
+            // Preventing the button from trying to submit the form
+            //event.preventDefault();
+            console.log("hello");
+            //let userInputid = $("#emailn")
+
+            writeUserData($("#searchTruckName").val(), $("#emailName").val(), pos)
+            // alert("You have been checked in ");
+            // $("#checkInLocation")[0].reset();
+            //$("#searchTruckName").reset();
+
+
+        });
+
+        $(".checkOutLocationButton").on("click", function () {
+            // Preventing the button from trying to submit the form
+            //event.preventDefault();
+            console.log("hello");
+            let userID = $("#searchTruckName").val();
+            firebase.database().ref('users/' + userID).remove()
+            // alert("You have been checked out ");
+            // $("#checkInLocation")[0].reset();
+            //clearform();
+            //let userInputid = $("#emailn")
+            // writeUserData($("#searchTruckName").val(), $("#emailName").val(),pos)
+        });
+
+
+
+
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3CWXAshpMiRrRXsGlLbIon7S5ZHAmjG4" async
+        defer></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCPnQV0bMCM7T5Or9Z9j90rBE4u7a0QOGI",
+            authDomain: "tinder-for-food-trucks.firebaseapp.com",
+            databaseURL: "https://tinder-for-food-trucks.firebaseio.com",
+            projectId: "tinder-for-food-trucks",
+            storageBucket: "tinder-for-food-trucks.appspot.com",
+            messagingSenderId: "602255825688",
+            appId: "1:602255825688:web:02f921fa837b05930a5c6d",
+            measurementId: "G-00BM15M1DV"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+
+    <footer>
+        <a href="index.html">
+            <h5>Food Truck Tinder, Inc:</h5>
+        </a>
+        <h6>Max</h6>
+        <h6>Kathryn</h6>
+        <h6>Jesse</h6>
+    </footer>
+
+</body>
+
+</html>

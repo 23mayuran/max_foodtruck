@@ -1,0 +1,224 @@
+
+
+#jumbotronHome {
+    background-image: url(foodTruckBanner.jpg);
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+}
+
+
+
+.nav-wrapper {
+    padding: 5px;
+    background-color: #424242;
+    width: 100%;
+    margin-top: 0px;
+    
+}
+
+.nav-wrapper2 {
+    border: solid black 3px;
+    text-shadow: 0px 2px 3px black;
+    text-align: center;
+
+}
+
+.jumbotron { 
+  padding: 50px;
+  background-image: url(https://media2.fdncms.com/stranger/imager/u/large/40665661/screen_shot_2019-07-03_at_4.56.37_pm.png);
+  background-attachment: fixed;
+  position: relative;
+  background-size: 100% 100%;
+  font-weight: bold;
+
+}
+
+
+.jumbotron #jumbotronDiv {
+    background:lightgrey;
+    border: solid black 1px;
+    opacity: 80%;
+  }
+
+.jumbotron #jumbotronDiv h1 { 
+    text-align: center;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    text-transform: uppercase;
+    text-shadow: 0px 2px 3px black;
+
+  }
+
+  
+.label-icon {
+    background-color: blue;
+    color: red;
+    text-align: center;
+}
+
+.input-field {
+    background-color: white;
+    text-align: center;
+    border-top: solid black 3px;
+
+}
+
+#containment {
+    background-color: grey;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    
+}
+
+
+.body-container {
+text-align: center;
+font-family: 'Times New Roman', Times, serif;
+
+}
+
+.brand-logo {
+    color:gold;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+
+}
+
+li:hover {
+    font-weight: bolder;
+    font-size: 20px;
+    transition: all .3s ease-in-out;
+
+}
+
+#searchTruckName, #emailName {
+    text-align: center;
+    color: black;
+    padding: 20px;
+    margin: auto;
+    margin-left: -20px;
+    margin-right: 20px;
+    width: 100%;
+    border-bottom: solid gray 1px;
+    
+}
+
+.checkInLocationButton, .checkOutLocationButton  {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    box-shadow: 0 5px 0 grey;
+
+}
+
+input::placeholder {
+    color: gray;
+    
+}
+
+#checkInWrapper {
+    /* background:lightgrey; */
+    /* border: solid black 1px; */
+    opacity: 90%;
+}
+
+.checkIncheckOut {
+
+    background-color: #bdbdbd;
+    padding: 10px;
+    text-align: center;
+    border-top: solid black 3px;
+    
+
+}
+
+.checkInLocationButton:hover {
+    font-size: 20px;
+    background-color: green;
+    transition: all .2s ease-in-out;
+    
+}
+
+.checkOutLocationButton:hover {
+    font-size: 20px;
+    background-color: red;
+    transition: all .2s ease-in-out;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    opacity: 75%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 30px;
+    text-align: center;
+
+}
+
+
+  /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+#map {
+    height: 100%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    outline-style: solid;
+}
+          /* Optional: Makes the sample page fill the window. */
+html, body {
+    height: 75%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Media Queries: Tabled Portrait */
+@media screen and (max-width: 479px) {
+    #primary { width:100%; }
+    #secondary { width:100%; margin:0; border:none; }
+}
+
+@media (max-width: 1024px) {
+
+
+    #jumbotronHome {
+      background-image: url('foodTruckBanner.jpg');
+      
+
+    }
+    .nav-wrapper {
+        background-color: #424242;
+        width: 100%;
+        margin-top: 0px;
+        text-align: center;
+        
+    }
+
+    .nav-wrapper .brand-logo {
+        text-align: center;
+        font-size: 19px;
+    }
+
+    .jumbotron #jumbotronDiv h1 {
+        color: black;
+        font-size: 40px;
+    }
+
+    html {
+        height: 25%;
+    }
+
+    #map {
+        height: 500px;
+    }
+  }
